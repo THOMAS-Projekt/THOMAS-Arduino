@@ -1,0 +1,42 @@
+PROTOKOLL
+
+Aufbau einer Übermittlung:
+<byte> Paketlänge
+<byte[Paketlänge]> Paket
+
+Direkt nach Verbindungsaufbau sendet der Arduino:
+<byte> Kommandobyte: 0
+<byte> Arduino-ID ( 0 => Sensorsystem, 1 => Lidar)
+
+Befehler vom Computer:
+<byte> Kommandobyte
+<bytes> Weitere Bytes zum spezifizieren des Befehles
+Rückgabe mit gleichem Kommandobyte.
+
+GLOBALE BEFEHLE:
+
+1 => Setup
+{
+	Rückgabe: <byte> Bestätigung: 1
+}
+
+BEFEHLE FÜRN LIDAR:
+
+10 => Scan starten
+{
+	<byte> Umdrehungen pro Sekunde
+	Rückgabe: <byte> Bestätigung: 1
+}
+
+11 => Scan stoppen
+{
+	Rückgabe: <byte> Bestätigung: 1
+}
+
+EREIGNISSE VOM LIDAR:
+
+100 => Messwert aufgenommen
+{
+	<float> Winkel
+	<short> Entfernungswert (-1 => Kein Messwert)
+}
