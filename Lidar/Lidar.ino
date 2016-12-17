@@ -33,12 +33,12 @@ void loop() {
 	short distance;
 
 	if (biasUpdateCount >= 100) {
-		lidar.distance(true);
-		distance = biasUpdateCount = 0;
+		distance = lidar.distance(true);
+		biasUpdateCount = 0;
 	}
 	else {
-		lidar.distance(false);
-		distance = biasUpdateCount++;
+		distance = lidar.distance(false);
+		biasUpdateCount++;
 	}
 
 	uint8_t *angleBytes = reinterpret_cast<uint8_t*>(&angle);
