@@ -20,6 +20,9 @@ int biasUpdateCount = 0;
 void setup() {
 	Serial.begin(115200);
 
+	// Handshake-Byte senden
+	Serial.write(255);
+
 	// Arduino-ID senden
 	uint8_t package[] = { 1 };
 	sendPackage(sizeof(package), package);
