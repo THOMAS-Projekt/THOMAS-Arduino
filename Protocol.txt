@@ -5,6 +5,7 @@ Aufbau einer Übermittlung:
 <byte[Paketlänge]> Paket
 
 Direkt nach Verbindungsaufbau sendet der Arduino:
+<byte> Handshake: 255 (erstes Byte der Übertragung, auf das der PC warten sollte)
 <byte> Kommandobyte: 0
 <byte> Arduino-ID ( 0 => Sensorsystem, 1 => Lidar)
 
